@@ -1,18 +1,14 @@
-10.1.0.6
-10.1.0.7
-#additional ip add here
-#192.168.56.105
-#192.168.56.106
+[web_servers]
+192.168.56.4 ansible_python_interpreter=/usr/bin/python3
+192.168.56.8 ansible_python_interpreter=/usr/bin/python3
+
+[db_servers]
+192.168.56.5 ansible_python_interpreter=/usr/bin/python3
+192.168.56.8 ansible_python_interpreter=/usr/bin/python3
+
+[file_servers]
+192.168.56.5 ansible_python_interpreter=/usr/bin/python3
+
+
 
 # you can put other ip address below
-10.104.0.2 ansible_sudo_pass=Tin0439Pen ansible_ssh_user=root
-10.104.0.4 ansible_sudo_pass=Tin0439Pen ansible_ssh_user=root
-[web_servers]
-#10.104.0.2 ansible_ssh_pass='Tin0439Pen' ansible_user='root'
-#10.104.0.4 ansible_ssh_pass='Tin0439Pen' ansible_user='root'
-#[db_servers]
-#10.104.0.2 ansible_ssh_pass='Tin0439Pen' ansible_user='root'
-#10.104.0.4 ansible_ssh_pass='Tin0439Pen' ansible_user='root'
-#[file_servers]
-#10.104.0.2 ansible_ssh_pass='Tin0439Pen' ansible_user='root'
-#10.104.0.4 ansible_ssh_pass='Tin0439Pen' ansible_user='root'

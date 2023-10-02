@@ -2,42 +2,36 @@
 - hosts: all
   become: true
   pre_tasks:
-
-  - name: update repository index (CentOS)
-    tags: always
+ 
+  - name: Install updates (CentOS)
     dnf:
+      update_only: yes
       update_cache: yes
-    changed_when: false
-    when: ansible_distribution == "CentOS"
-  - name: install updates (Ubuntu)
-    tags: always
-    apt: 
+    when: ansible_distribution =="CentOS"
+
+  - name: Install updates (Ubuntu)
+    apt:
+      upgrade: dist
       update_cache: yes
-    changed_when: false
     when: ansible_distribution == "Ubuntu"
-
-- hosts: all
-  become: true
-  roles:
-    -  base
-
-#- hosts: workstations
- # become: true
-  #roles: 
-   # - workstations
 
 - hosts: web_servers
   become: true
-  roles:
-    - web_servers
+  tasks:
 
-- hosts: db_servers
-  become: true
-  roles:
-    - db_servers
+  - name: Install apache and PHP for Ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
 
-- hosts: file_servers
-  become: true
-  roles: 
-    - file_servers
+  - name: Install apache and PHP for CentOS
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
+    when: ansible_distribution == "CentOS"
 
